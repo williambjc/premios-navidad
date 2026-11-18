@@ -422,25 +422,25 @@
             btn.disabled = true;
             btn.textContent = "Guardando votos...";
 
-            // URL oficial de Google Apps Script ya integrada
             const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyQ9v6HqX91Hyyd_HhfX_hKilbbIMdAlMcBmr6vMbhMnUUIB1TQHEYZ28IMYHiiXds_w/exec"; 
 
+            let votosFormateados = {};
+            for (const [catId, nomineeName] of Object.entries(votes)) {
+                const categoryObj = categories.find(c => c.id === catId);
+                votosFormateados[categoryObj.name] = nomineeName;
+            }
+
             try {
-                for (const [catId, nomineeName] of Object.entries(votes)) {
-                    const categoryObj = categories.find(c => c.id === catId);
-                    
-                    await fetch(GOOGLE_SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            nombre: userData.name,
-                            email: userData.email,
-                            categoria: categoryObj.name,
-                            nominado: nomineeName
-                        })
-                    });
-                }
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nombre: userData.name,
+                        email: userData.email,
+                        votos: votosFormateados
+                    })
+                });
 
                 stepReview.classList.add('hidden');
                 stepSuccess.classList.remove('hidden');
