@@ -52,6 +52,9 @@
         .fade-in { animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
+        @keyframes spinSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .animate-spin-slow { animation: spinSlow 1.5s linear infinite; }
+
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: rgba(6, 78, 59, 0.2); border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: rgba(255, 203, 5, 0.4); border-radius: 10px; }
@@ -80,25 +83,6 @@
         <div class="snowflake" style="left: 60%; width: 6px; height: 6px; animation-duration: 11s; animation-delay: 3s;"></div>
         <div class="snowflake" style="left: 80%; width: 5px; height: 5px; animation-duration: 14s; animation-delay: 1.5s;"></div>
         <div class="snowflake" style="left: 92%; width: 6px; height: 6px; animation-duration: 10.5s; animation-delay: 0.5s;"></div>
-    </div>
-
-    <!-- Árboles decorativos -->
-    <div class="fixed bottom-0 left-0 z-0 pointer-events-none opacity-85 hidden sm:block">
-        <svg class="w-56 h-72" viewBox="0 0 200 260">
-            <rect x="85" y="215" width="30" height="45" fill="#451a03"/>
-            <polygon points="100,25 35,110 165,110" fill="#065f46"/><polygon points="100,70 25,165 175,165" fill="#047857"/><polygon points="100,120 15,220 185,220" fill="#059669"/>
-            <polygon points="100,8 105,20 118,20 108,28 112,40 100,32 88,40 92,28 82,20 95,20" fill="#ffcb05"/>
-            <circle cx="80" cy="95" r="5" class="bulb-red"/><circle cx="120" cy="90" r="5" class="bulb-yellow"/><circle cx="65" cy="145" r="6" class="bulb-blue"/><circle cx="138" cy="150" r="6" class="bulb-yellow"/><circle cx="95" cy="190" r="6" class="bulb-red"/>
-        </svg>
-    </div>
-    <div class="fixed bottom-0 right-0 z-0 pointer-events-none opacity-85 hidden sm:block">
-        <svg class="w-64 h-80" viewBox="0 0 240 280">
-            <rect x="115" y="235" width="30" height="45" fill="#451a03"/>
-            <polygon points="130,30 60,120 200,120" fill="#065f46"/><polygon points="130,80 45,180 215,180" fill="#047857"/><polygon points="130,135 30,240 230,240" fill="#059669"/>
-            <polygon points="130,12 135,24 148,24 138,32 142,44 130,36 118,44 122,32 112,24 125,24" fill="#ffcb05"/>
-            <circle cx="110" cy="100" r="5" class="bulb-yellow"/><circle cx="150" cy="105" r="5" class="bulb-red"/><circle cx="95" cy="155" r="6" class="bulb-red"/><circle cx="170" cy="165" r="6" class="bulb-yellow"/><circle cx="130" cy="210" r="6" class="bulb-yellow"/>
-            <rect x="45" y="245" width="35" height="35" rx="3" fill="#dc2626"/><rect x="60" y="245" width="5" height="35" fill="#ffcb05"/><rect x="45" y="260" width="35" height="5" fill="#ffcb05"/>
-        </svg>
     </div>
 
     <!-- CONTENIDO CENTRAL -->
@@ -215,6 +199,19 @@
                 </div>
             </div>
 
+            <!-- PASO CARGANDO REAL (Esperando a Google) -->
+            <div id="stepLoading" class="hidden text-center py-10 space-y-6 fade-in">
+                <div class="relative w-20 h-20 mx-auto">
+                    <div class="absolute inset-0 border-4 border-emerald-900 rounded-full"></div>
+                    <div class="absolute inset-0 border-4 border-yellow-400 rounded-full border-t-transparent animate-spin-slow"></div>
+                    <div class="absolute inset-0 flex items-center justify-center text-2xl">🎁</div>
+                </div>
+                <div class="space-y-2">
+                    <h2 class="text-lg font-bold text-white">Guardando en el Excel...</h2>
+                    <p class="text-xs text-yellow-400 font-medium animate-pulse">Verificando seguridad y registrando votos 🛷</p>
+                </div>
+            </div>
+
             <!-- PASO FINAL: Éxito -->
             <div id="stepSuccess" class="hidden text-center py-6 space-y-4 fade-in">
                 <div class="w-16 h-16 bg-yellow-400/15 text-yellow-400 rounded-full flex items-center justify-center mx-auto text-3xl border border-yellow-400/30">
@@ -240,14 +237,15 @@
             "VEGA VIDAL GEANELLA BRIGGITTE", "MOREIRA CHAVEZ ELENA DEL PILAR", "ESPINOZA GARCIA VIVIAN RUTH",
             "SEGARRA CARDENAS MARLON ALAN", "PANCHANA TOMALA SHEYLA DANIELA", "VERGARA GUNCAY JOSELINE VIVIANA",
             "RODRIGUEZ RIOS DANILO GABRIEL", "OLIVO BARZOLA MILDRED NATHALY", "CASTRO MAYORGA LUIS ADRIAN",
-            "FLORES TUMBACO DAYANA GEORGINA", "DANIELA PAOLA ESCOBEDO AYOVI", "VALLEJO TRIVIÑO JESSICA ELISA"
+            "FLORES TUMBACO DAYANA GEORGINA", "DANIELA PAOLA ESCOBEDO AYOVI", "VALLEJO TRIVIÑO JESSICA ELISA",
+            "RAMONES KATRINE", "MENSTANZA WALTER"
         ];
 
         const asesoresHombres = [
             "ALFAGO MANTUANO FRANCO ISRAEL", "LOPEZ VACA DYLAN RUBEN", "BALSECA JIMENEZ WILLIAM FRANCISCO",
             "MOLINA PITA POOL ANDERSON", "MACIAS MOYANO LEVIS DAVID", "CHOMPOL SALAZAR JEFFERSON EDUARDO",
             "MOREJON VASQUEZ MIGUEL ANDRES", "SEGARRA CARDENAS MARLON ALAN", "RODRIGUEZ RIOS DANILO GABRIEL",
-            "CASTRO MAYORGA LUIS ADRIAN"
+            "CASTRO MAYORGA LUIS ADRIAN", "MENSTANZA WALTER"
         ];
 
         const asesorasMujeres = [
@@ -255,7 +253,7 @@
             "QUINTO CAICEDO EMILY CRISTEL", "PINARGOTE OLMEDO ASHLEY JORDANA", "VEGA VIDAL GEANELLA BRIGGITTE",
             "MOREIRA CHAVEZ ELENA DEL PILAR", "ESPINOZA GARCIA VIVIAN RUTH", "PANCHANA TOMALA SHEYLA DANIELA",
             "VERGARA GUNCAY JOSELINE VIVIANA", "OLIVO BARZOLA MILDRED NATHALY", "FLORES TUMBACO DAYANA GEORGINA",
-            "DANIELA PAOLA ESCOBEDO AYOVI", "VALLEJO TRIVIÑO JESSICA ELISA"
+            "DANIELA PAOLA ESCOBEDO AYOVI", "VALLEJO TRIVIÑO JESSICA ELISA", "RAMONES KATRINE"
         ];
 
         const categories = [
@@ -286,6 +284,7 @@
         const stepUser = document.getElementById('stepUser');
         const stepCategory = document.getElementById('stepCategory');
         const stepReview = document.getElementById('stepReview');
+        const stepLoading = document.getElementById('stepLoading');
         const stepSuccess = document.getElementById('stepSuccess');
         const errorMessage = document.getElementById('errorMessage');
         const searchInput = document.getElementById('searchNominee');
@@ -417,11 +416,7 @@
             stepCategory.classList.remove('hidden');
         }
 
-        function submitAllVotes() {
-            const btn = document.getElementById('confirmSubmitBtn');
-            btn.disabled = true;
-            btn.textContent = "Guardando votos...";
-
+        async function submitAllVotes() {
             const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyQ9v6HqX91Hyyd_HhfX_hKilbbIMdAlMcBmr6vMbhMnUUIB1TQHEYZ28IMYHiiXds_w/exec"; 
 
             let votosFormateados = {};
@@ -430,28 +425,45 @@
                 votosFormateados[categoryObj.name] = nomineeName;
             }
 
-            // Disparamos la petición a Google en segundo plano sin bloquear la pantalla
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    nombre: userData.name,
-                    email: userData.email,
-                    votos: votosFormateados
-                })
-            }).catch(err => console.log(err));
-
-            // Mostramos el éxito de inmediato para que vuele en el celular
+            // 1. Mostrar pantalla de carga real
             stepReview.classList.add('hidden');
-            stepSuccess.classList.remove('hidden');
-            
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ffcb05', '#172b4d', '#ef4444', '#10b981']
-            });
+            stepLoading.classList.remove('hidden');
+
+            try {
+                // 2. Esperar de verdad a que Google responda y valide el correo
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        nombre: userData.name,
+                        email: userData.email,
+                        votos: votosFormateados
+                    })
+                });
+
+                const result = await response.json();
+                stepLoading.classList.add('hidden');
+
+                if (result.result === "success") {
+                    // 3. Éxito: Mostrar pantalla con confeti
+                    stepSuccess.classList.remove('hidden');
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ['#ffcb05', '#172b4d', '#ef4444', '#10b981']
+                    });
+                } else {
+                    // El servidor detectó que el correo ya votó
+                    stepReview.classList.remove('hidden');
+                    showError(result.message || "Este correo ya registró su votación.");
+                }
+
+            } catch (error) {
+                stepLoading.classList.add('hidden');
+                stepReview.classList.remove('hidden');
+                showError("Hubo un error al registrar los votos. Inténtalo de nuevo.");
+            }
         }
     </script>
 </body>
