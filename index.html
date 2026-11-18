@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificados Navideños 2026 🎄 | Banco Pichincha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Librería de Confeti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        xmasDark: '#071710',
+                        xmasCard: '#0e241b',
+                        pichinchaYellow: '#ffcb05',
+                        pichinchaBlue: '#172b4d'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style> 
+        body { font-family: 'Inter', sans-serif; } 
+        
+        @keyframes snowfall {
+            0% { transform: translateY(-10vh) translateX(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(105vh) translateX(25px); opacity: 0; }
+        }
+        .snowflake {
+            position: fixed;
+            top: -10vh;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(255,255,255,0.8);
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes glowRed { 0%, 100% { fill: #ef4444; filter: drop-shadow(0 0 8px #ef4444); } 50% { fill: #7f1d1d; filter: none; } }
+        @keyframes glowYellow { 0%, 100% { fill: #ffcb05; filter: drop-shadow(0 0 8px #ffcb05); } 50% { fill: #713f12; filter: none; } }
+        @keyframes glowGreen { 0%, 100% { fill: #10b981; filter: drop-shadow(0 0 8px #10b981); } 50% { fill: #064e3b; filter: none; } }
+        @keyframes glowBlue { 0%, 100% { fill: #38bdf8; filter: drop-shadow(0 0 8px #38bdf8); } 50% { fill: #0c4a6e; filter: none; } }
+        .bulb-red { animation: glowRed 2s infinite; }
+        .bulb-yellow { animation: glowYellow 2s infinite 0.5s; }
+        .bulb-green { animation: glowGreen 2s infinite 1s; }
+        .bulb-blue { animation: glowBlue 2s infinite 1.5s; }
+
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(6, 78, 59, 0.2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 203, 5, 0.4); border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-xmasDark text-slate-100 min-h-full flex flex-col justify-center selection:bg-yellow-400 selection:text-black relative overflow-x-hidden">
+
+    <!-- Guirnalda de luces LED -->
+    <div class="fixed top-0 left-0 right-0 z-20 pointer-events-none overflow-hidden">
+        <svg class="w-full h-14" viewBox="0 0 1200 60" preserveAspectRatio="none">
+            <path d="M0,5 Q150,45 300,10 T600,10 T900,10 T1200,10" fill="none" stroke="#1e293b" stroke-width="3"/>
+            <circle cx="80" cy="22" r="6" class="bulb-red"/><circle cx="160" cy="27" r="6" class="bulb-yellow"/>
+            <circle cx="240" cy="18" r="6" class="bulb-green"/><circle cx="340" cy="8" r="6" class="bulb-blue"/>
+            <circle cx="440" cy="16" r="6" class="bulb-red"/><circle cx="530" cy="15" r="6" class="bulb-yellow"/>
+            <circle cx="640" cy="14" r="6" class="bulb-green"/><circle cx="740" cy="18" r="6" class="bulb-blue"/>
+            <circle cx="840" cy="12" r="6" class="bulb-red"/><circle cx="940" cy="14" r="6" class="bulb-yellow"/>
+            <circle cx="1040" cy="18" r="6" class="bulb-green"/><circle cx="1130" cy="14" r="6" class="bulb-blue"/>
+        </svg>
+    </div>
+
+    <!-- Nieve -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="snowflake" style="left: 5%; width: 5px; height: 5px; animation-duration: 9s;"></div>
+        <div class="snowflake" style="left: 20%; width: 7px; height: 7px; animation-duration: 13s; animation-delay: 2s;"></div>
+        <div class="snowflake" style="left: 40%; width: 4px; height: 4px; animation-duration: 10s; animation-delay: 1s;"></div>
+        <div class="snowflake" style="left: 60%; width: 6px; height: 6px; animation-duration: 11s; animation-delay: 3s;"></div>
+        <div class="snowflake" style="left: 80%; width: 5px; height: 5px; animation-duration: 14s; animation-delay: 1.5s;"></div>
+        <div class="snowflake" style="left: 92%; width: 6px; height: 6px; animation-duration: 10.5s; animation-delay: 0.5s;"></div>
+    </div>
+
+    <!-- Árboles decorativos -->
+    <div class="fixed bottom-0 left-0 z-0 pointer-events-none opacity-85 hidden sm:block">
+        <svg class="w-56 h-72" viewBox="0 0 200 260">
+            <rect x="85" y="215" width="30" height="45" fill="#451a03"/>
+            <polygon points="100,25 35,110 165,110" fill="#065f46"/><polygon points="100,70 25,165 175,165" fill="#047857"/><polygon points="100,120 15,220 185,220" fill="#059669"/>
+            <polygon points="100,8 105,20 118,20 108,28 112,40 100,32 88,40 92,28 82,20 95,20" fill="#ffcb05"/>
+            <circle cx="80" cy="95" r="5" class="bulb-red"/><circle cx="120" cy="90" r="5" class="bulb-yellow"/><circle cx="65" cy="145" r="6" class="bulb-blue"/><circle cx="138" cy="150" r="6" class="bulb-yellow"/><circle cx="95" cy="190" r="6" class="bulb-red"/>
+        </svg>
+    </div>
+    <div class="fixed bottom-0 right-0 z-0 pointer-events-none opacity-85 hidden sm:block">
+        <svg class="w-64 h-80" viewBox="0 0 240 280">
+            <rect x="115" y="235" width="30" height="45" fill="#451a03"/>
+            <polygon points="130,30 60,120 200,120" fill="#065f46"/><polygon points="130,80 45,180 215,180" fill="#047857"/><polygon points="130,135 30,240 230,240" fill="#059669"/>
+            <polygon points="130,12 135,24 148,24 138,32 142,44 130,36 118,44 122,32 112,24 125,24" fill="#ffcb05"/>
+            <circle cx="110" cy="100" r="5" class="bulb-yellow"/><circle cx="150" cy="105" r="5" class="bulb-red"/><circle cx="95" cy="155" r="6" class="bulb-red"/><circle cx="170" cy="165" r="6" class="bulb-yellow"/><circle cx="130" cy="210" r="6" class="bulb-yellow"/>
+            <rect x="45" y="245" width="35" height="35" rx="3" fill="#dc2626"/><rect x="60" y="245" width="5" height="35" fill="#ffcb05"/><rect x="45" y="260" width="35" height="5" fill="#ffcb05"/>
+        </svg>
+    </div>
+
+    <!-- CONTENIDO CENTRAL -->
+    <div class="relative z-10 max-w-xl mx-auto px-4 py-10 w-full flex flex-col justify-center">
+        
+        <!-- Header -->
+        <div class="text-center mb-6">
+            <div class="inline-flex items-center bg-white px-5 py-3 rounded-2xl shadow-2xl border-2 border-yellow-400 mb-4 space-x-3 select-none">
+                <svg class="w-9 h-9" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 0H95C97.7614 0 100 2.23858 100 5V95C100 97.7614 97.7614 100 95 100H15C6.71573 100 0 93.2843 0 85V15C0 6.71573 6.71573 0 15 0Z" fill="#FFCB05"/>
+                    <path d="M50 20H75V45H65V30H50V20Z" fill="#172b4d"/>
+                    <path d="M65 45H75V70H50V60H65V45Z" fill="#172b4d"/>
+                </svg>
+                <div class="text-left">
+                    <span class="block font-black text-slate-900 tracking-tight text-base sm:text-lg leading-none">BANCO PICHINCHA</span>
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Certificados 2026</span>
+                </div>
+            </div>
+
+            <div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Certificados Navideños</h1>
+                <p class="text-yellow-400 font-medium text-sm sm:text-base mt-1">Nomina a tu preferido según la temática</p>
+            </div>
+        </div>
+
+        <!-- Tarjeta Principal -->
+        <div class="bg-xmasCard/95 backdrop-blur-xl border border-emerald-700/60 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-black/80 relative">
+            
+            <div class="absolute -top-3 -left-3 text-2xl drop-shadow">🎄</div>
+            <div class="absolute -top-3 -right-3 text-2xl drop-shadow">🎁</div>
+
+            <!-- PASO 1: Registro -->
+            <div id="stepUser" class="space-y-5 fade-in">
+                <div class="border-b border-emerald-800/70 pb-3">
+                    <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Identificación</span>
+                    <h2 class="text-lg font-bold text-white mt-0.5">Ingresa tus datos para votar ✍️</h2>
+                </div>
+                
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Tu Nombre Completo <span class="text-yellow-400">*</span></label>
+                    <input type="text" id="userName" required 
+                        class="w-full bg-slate-950/90 border border-emerald-800 rounded-xl px-4 py-3 text-slate-100 text-sm focus:outline-none focus:border-yellow-400 transition-all">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Tu Correo Personal <span class="text-yellow-400">*</span></label>
+                    <input type="email" id="userEmail" required 
+                        class="w-full bg-slate-950/90 border border-emerald-800 rounded-xl px-4 py-3 text-slate-100 text-sm focus:outline-none focus:border-yellow-400 transition-all">
+                </div>
+
+                <button onclick="startVoting()" 
+                    class="w-full bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-extrabold text-sm py-3.5 px-4 rounded-xl transition-all shadow-lg shadow-yellow-400/20 flex items-center justify-center space-x-2 cursor-pointer mt-2">
+                    <span>Comenzar Votación 🎄</span>
+                </button>
+            </div>
+
+            <!-- PASO 2: Categorías -->
+            <div id="stepCategory" class="hidden space-y-4 fade-in">
+                <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-emerald-900">
+                    <div id="progressBar" class="bg-yellow-400 h-full transition-all duration-300" style="width: 5%"></div>
+                </div>
+
+                <div class="border-b border-emerald-800/70 pb-3 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div id="catImageContainer" class="w-12 h-12 rounded-2xl bg-emerald-950 border border-emerald-700/80 flex items-center justify-center text-2xl shadow-inner shrink-0">
+                            🎁
+                        </div>
+                        <div>
+                            <span id="catBadge" class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Temática</span>
+                            <h2 id="catTitle" class="text-base sm:text-lg font-bold text-white leading-snug">Título</h2>
+                        </div>
+                    </div>
+                    <span id="stepIndicator" class="text-xs font-semibold bg-emerald-950 border border-emerald-700 text-yellow-400 px-2.5 py-1 rounded-lg shrink-0 ml-2">1 / 18</span>
+                </div>
+
+                <p id="catDesc" class="text-xs text-slate-300 bg-slate-950/50 p-2.5 rounded-xl border border-emerald-900/50 italic"></p>
+
+                <div id="searchBoxContainer">
+                    <input type="text" id="searchNominee" onkeyup="filterNominees()" placeholder="🔍 Buscar compañero por nombre..." 
+                        class="w-full bg-slate-950/70 border border-emerald-800/80 rounded-xl px-3.5 py-2 text-slate-200 placeholder-slate-500 text-xs focus:outline-none focus:border-yellow-400 transition">
+                </div>
+
+                <div>
+                    <div id="nomineesContainer" class="space-y-2 max-h-52 overflow-y-auto pr-1"></div>
+                </div>
+
+                <div class="flex space-x-3 pt-2">
+                    <button id="prevBtn" onclick="prevCategory()" class="hidden w-1/3 bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold py-3 rounded-xl border border-emerald-800 transition cursor-pointer">
+                        ← Anterior
+                    </button>
+                    <button id="nextBtn" onclick="nextCategory()" class="w-full bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-extrabold text-xs py-3 rounded-xl transition shadow-lg shadow-yellow-400/20 cursor-pointer">
+                        Siguiente Temática →
+                    </button>
+                </div>
+            </div>
+
+            <!-- PASO 3: Resumen Previo -->
+            <div id="stepReview" class="hidden space-y-4 fade-in">
+                <div class="border-b border-emerald-800/70 pb-3">
+                    <span class="text-xs font-bold text-yellow-400 uppercase tracking-wider">Confirmación</span>
+                    <h2 class="text-lg font-bold text-white mt-0.5">Revisa tus nominaciones 📋</h2>
+                    <p class="text-xs text-slate-400">Verifica tus votos antes de registrarlos definitivamente.</p>
+                </div>
+
+                <div id="reviewList" class="space-y-2 max-h-60 overflow-y-auto pr-1 text-xs"></div>
+
+                <div class="flex space-x-3 pt-2">
+                    <button onclick="backToEdit()" class="w-1/3 bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold py-3 rounded-xl border border-emerald-800 transition cursor-pointer">
+                        ← Corregir
+                    </button>
+                    <button id="confirmSubmitBtn" onclick="submitAllVotes()" class="w-2/3 bg-yellow-400 hover:bg-yellow-300 text-slate-950 font-extrabold text-xs py-3 rounded-xl transition shadow-lg shadow-yellow-400/20 cursor-pointer">
+                        Confirmar y Enviar Votos 🚀
+                    </button>
+                </div>
+            </div>
+
+            <!-- PASO FINAL: Éxito -->
+            <div id="stepSuccess" class="hidden text-center py-6 space-y-4 fade-in">
+                <div class="w-16 h-16 bg-yellow-400/15 text-yellow-400 rounded-full flex items-center justify-center mx-auto text-3xl border border-yellow-400/30">
+                    🎅
+                </div>
+                <h2 class="text-xl font-bold text-white">¡Nominaciones Registradas!</h2>
+                <p class="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">Tus votos han sido guardados con éxito. ¡Prepárate para la entrega de certificados!</p>
+                <button onclick="location.reload()" class="bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold py-2.5 px-5 rounded-xl border border-emerald-800 transition cursor-pointer">
+                    Volver al Inicio
+                </button>
+            </div>
+
+            <div id="errorMessage" class="hidden mt-4 p-3 rounded-xl text-center text-xs font-medium bg-red-500/20 text-red-300 border border-red-500/40"></div>
+        </div>
+    </div>
+
+    <script>
+        const todosLosAsesores = [
+            "CHUBA CHUBA CRISTINA ESTEFANIA", "ALFAGO MANTUANO FRANCO ISRAEL", "LOPEZ VACA DYLAN RUBEN",
+            "BALSECA JIMENEZ WILLIAM FRANCISCO", "MOLINA PITA POOL ANDERSON", "MACIAS MOYANO LEVIS DAVID",
+            "CHOMPOL SALAZAR JEFFERSON EDUARDO", "QUITO TOALA MONICA PATRICIA", "ESPINOZA PERALTA LIZBETH DEL ROSARIO",
+            "QUINTO CAICEDO EMILY CRISTEL", "MOREJON VASQUEZ MIGUEL ANDRES", "PINARGOTE OLMEDO ASHLEY JORDANA",
+            "VEGA VIDAL GEANELLA BRIGGITTE", "MOREIRA CHAVEZ ELENA DEL PILAR", "ESPINOZA GARCIA VIVIAN RUTH",
+            "SEGARRA CARDENAS MARLON ALAN", "PANCHANA TOMALA SHEYLA DANIELA", "VERGARA GUNCAY JOSELINE VIVIANA",
+            "RODRIGUEZ RIOS DANILO GABRIEL", "OLIVO BARZOLA MILDRED NATHALY", "CASTRO MAYORGA LUIS ADRIAN",
+            "FLORES TUMBACO DAYANA GEORGINA", "DANIELA PAOLA ESCOBEDO AYOVI", "VALLEJO TRIVIÑO JESSICA ELISA"
+        ];
+
+        const asesoresHombres = [
+            "ALFAGO MANTUANO FRANCO ISRAEL", "LOPEZ VACA DYLAN RUBEN", "BALSECA JIMENEZ WILLIAM FRANCISCO",
+            "MOLINA PITA POOL ANDERSON", "MACIAS MOYANO LEVIS DAVID", "CHOMPOL SALAZAR JEFFERSON EDUARDO",
+            "MOREJON VASQUEZ MIGUEL ANDRES", "SEGARRA CARDENAS MARLON ALAN", "RODRIGUEZ RIOS DANILO GABRIEL",
+            "CASTRO MAYORGA LUIS ADRIAN"
+        ];
+
+        const asesorasMujeres = [
+            "CHUBA CHUBA CRISTINA ESTEFANIA", "QUITO TOALA MONICA PATRICIA", "ESPINOZA PERALTA LIZBETH DEL ROSARIO",
+            "QUINTO CAICEDO EMILY CRISTEL", "PINARGOTE OLMEDO ASHLEY JORDANA", "VEGA VIDAL GEANELLA BRIGGITTE",
+            "MOREIRA CHAVEZ ELENA DEL PILAR", "ESPINOZA GARCIA VIVIAN RUTH", "PANCHANA TOMALA SHEYLA DANIELA",
+            "VERGARA GUNCAY JOSELINE VIVIANA", "OLIVO BARZOLA MILDRED NATHALY", "FLORES TUMBACO DAYANA GEORGINA",
+            "DANIELA PAOLA ESCOBEDO AYOVI", "VALLEJO TRIVIÑO JESSICA ELISA"
+        ];
+
+        const categories = [
+            { id: "bandido_hombre", name: "El Más Bandido", desc: "El que siempre anda en jugadas sospechosas y nadie le cree nada.", icon: "🦹‍♂️", nominees: asesoresHombres },
+            { id: "bandida_mujer", name: "La Más Bandida", desc: "La que tiene su historial oculto y se hace la inocente en la campaña.", icon: "🦹‍♀️", nominees: asesorasMujeres },
+            { id: "pareja_ano", name: "La Pareja del Año", desc: "Inseparables en toda la jornada, siempre andan juntos para todo.", icon: "👩‍❤️‍👨", nominees: ["Pool y Danilo", "Franco y Marlon", "Luis y Chompol"], hideSearch: true },
+            { id: "miss_vergonia", name: "Miss / Mister Vergonia", desc: "El que valió v... en el mes y todo le salió al revés.", icon: "💀", nominees: todosLosAsesores },
+            { id: "el_mandarina", name: "El Mandarina", desc: "El que pide permiso hasta para respirar (premio incluye traer una mandarina).", icon: "🍊", nominees: todosLosAsesores },
+            { id: "mas_clasista", name: "El Más Clasista", desc: "Solo toma café de especialidad y mira por encima del hombro.", icon: "🥂", nominees: todosLosAsesores },
+            { id: "mas_fifas", name: "El Más Fifas", desc: "Respira fútbol 24/7 y solo habla de partidos, apuestas o alineaciones.", icon: "⚽", nominees: todosLosAsesores },
+            { id: "el_dory", name: "El Dory de la Campaña", desc: "Le explican algo ahorita y a los 5 minutos ya se le olvidó todo.", icon: "🐠", nominees: todosLosAsesores },
+            { id: "el_grinch", name: "El Grinch", desc: "Odia la Navidad, los villancicos y anda amargado todo diciembre.", icon: "💚", nominees: todosLosAsesores },
+            { id: "sensor_movimiento", name: "El Sensor de Movimiento", desc: "Solo se activa y trabaja cuando ve que pasa el supervisor.", icon: "👁️", nominees: todosLosAsesores },
+            { id: "el_fantasma", name: "El Fantasma", desc: "Nadie lo ve en su puesto nunca, aparece y desaparece como por arte de magia.", icon: "👻", nominees: todosLosAsesores },
+            { id: "el_impuntual", name: "El Impuntual", desc: "Siempre tiene una excusa nueva del tráfico para llegar tarde.", icon: "⏰", nominees: todosLosAsesores },
+            { id: "el_jarras", name: "El Más Jarras", desc: "No perdona un viernes y es el primero en armar la farra.", icon: "🍻", nominees: todosLosAsesores },
+            { id: "el_psicologo", name: "La o El Psicólogo", desc: "Todos van a su puesto a contarle sus dramas y pedirle consejos.", icon: "🛋️", nominees: todosLosAsesores },
+            { id: "el_resentido", name: "El Más Resentido", desc: "Por cualquier broma se pica y deja de hablar tres días.", icon: "😒", nominees: todosLosAsesores },
+            { id: "el_salado", name: "El Más Salado", desc: "Cuando está a punto de cerrar la venta, se cae el sistema o le cuelgan.", icon: "🧂", nominees: todosLosAsesores },
+            { id: "la_revelacion", name: "La Revelación", desc: "Llegó calladito y terminó sorprendiendo a todos con su rendimiento.", icon: "🌟", nominees: todosLosAsesores },
+            { id: "el_estresado", name: "El Más Estresado", desc: "Vive al borde del colapso con cada llamada y cada meta.", icon: "🤯", nominees: todosLosAsesores }
+        ];
+
+        let currentStep = 0; 
+        let userData = { name: '', email: '' };
+        let votes = {}; 
+
+        const stepUser = document.getElementById('stepUser');
+        const stepCategory = document.getElementById('stepCategory');
+        const stepReview = document.getElementById('stepReview');
+        const stepSuccess = document.getElementById('stepSuccess');
+        const errorMessage = document.getElementById('errorMessage');
+        const searchInput = document.getElementById('searchNominee');
+        const searchBoxContainer = document.getElementById('searchBoxContainer');
+
+        function showError(msg) {
+            errorMessage.textContent = msg;
+            errorMessage.classList.remove('hidden');
+            setTimeout(() => errorMessage.classList.add('hidden'), 4000);
+        }
+
+        function startVoting() {
+            const name = document.getElementById('userName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+
+            if (!name || !email) {
+                showError("Por favor completa tu nombre y correo para continuar.");
+                return;
+            }
+
+            userData.name = name;
+            userData.email = email;
+            currentStep = 1;
+            renderCategory();
+        }
+
+        function renderCategory() {
+            stepUser.classList.add('hidden');
+            stepReview.classList.add('hidden');
+            stepCategory.classList.remove('hidden');
+            searchInput.value = ''; 
+            
+            const catIndex = currentStep - 1;
+            const cat = categories[catIndex];
+
+            const progressPercent = Math.round((currentStep / categories.length) * 100);
+            document.getElementById('progressBar').style.width = `${progressPercent}%`;
+
+            document.getElementById('stepIndicator').textContent = `${currentStep} / ${categories.length}`;
+            document.getElementById('catBadge').textContent = `Temática ${currentStep}`;
+            document.getElementById('catTitle').textContent = cat.name;
+            document.getElementById('catDesc').textContent = cat.desc;
+            document.getElementById('catImageContainer').textContent = cat.icon;
+
+            if (cat.hideSearch) searchBoxContainer.classList.add('hidden');
+            else searchBoxContainer.classList.remove('hidden');
+
+            renderNomineeList(cat.nominees, cat.id);
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            prevBtn.classList.toggle('hidden', currentStep === 1);
+            nextBtn.textContent = (currentStep === categories.length) ? "Revisar mis votos 📋" : "Siguiente Temática →";
+        }
+
+        function renderNomineeList(list, catId) {
+            const container = document.getElementById('nomineesContainer');
+            container.innerHTML = '';
+
+            list.forEach(nominee => {
+                const isChecked = votes[catId] === nominee ? 'checked' : '';
+                const div = document.createElement('label');
+                div.className = `flex items-center justify-between p-3 rounded-xl border cursor-pointer transition ${isChecked ? 'bg-yellow-400/15 border-yellow-400 text-white font-semibold' : 'bg-slate-950/70 border-emerald-800/80 text-slate-300 hover:bg-slate-900'}`;
+                div.innerHTML = `
+                    <span class="text-xs sm:text-sm">${nominee}</span>
+                    <input type="radio" name="nomineeChoice" value="${nominee}" ${isChecked} class="accent-yellow-400 w-4 h-4 shrink-0 ml-2">
+                `;
+                
+                div.querySelector('input').addEventListener('change', () => {
+                    votes[catId] = nominee;
+                    renderNomineeList(list, catId);
+                });
+
+                container.appendChild(div);
+            });
+        }
+
+        function filterNominees() {
+            const query = searchInput.value.toLowerCase();
+            const cat = categories[currentStep - 1];
+            const filtered = cat.nominees.filter(n => n.toLowerCase().includes(query));
+            renderNomineeList(filtered, cat.id);
+        }
+
+        function prevCategory() {
+            if (currentStep > 1) {
+                currentStep--;
+                renderCategory();
+            }
+        }
+
+        function nextCategory() {
+            const cat = categories[currentStep - 1];
+            if (!votes[cat.id]) {
+                showError("Debes seleccionar un nominado para continuar.");
+                return;
+            }
+
+            if (currentStep < categories.length) {
+                currentStep++;
+                renderCategory();
+            } else {
+                showReviewScreen();
+            }
+        }
+
+        function showReviewScreen() {
+            stepCategory.classList.add('hidden');
+            stepReview.classList.remove('hidden');
+
+            const reviewList = document.getElementById('reviewList');
+            reviewList.innerHTML = '';
+
+            categories.forEach(cat => {
+                const chosen = votes[cat.id] || 'Sin selección';
+                const item = document.createElement('div');
+                item.className = "flex justify-between items-center bg-slate-950/70 p-2.5 rounded-xl border border-emerald-900/60";
+                item.innerHTML = `
+                    <span class="text-slate-400 font-medium">${cat.icon} ${cat.name}:</span>
+                    <span class="text-yellow-400 font-bold text-right ml-2">${chosen}</span>
+                `;
+                reviewList.appendChild(item);
+            });
+        }
+
+        function backToEdit() {
+            stepReview.classList.add('hidden');
+            stepCategory.classList.remove('hidden');
+        }
+
+        async function submitAllVotes() {
+            const btn = document.getElementById('confirmSubmitBtn');
+            btn.disabled = true;
+            btn.textContent = "Guardando votos...";
+
+            // URL oficial de Google Apps Script ya integrada
+            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyQ9v6HqX91Hyyd_HhfX_hKilbbIMdAlMcBmr6vMbhMnUUIB1TQHEYZ28IMYHiiXds_w/exec"; 
+
+            try {
+                for (const [catId, nomineeName] of Object.entries(votes)) {
+                    const categoryObj = categories.find(c => c.id === catId);
+                    
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            nombre: userData.name,
+                            email: userData.email,
+                            categoria: categoryObj.name,
+                            nominado: nomineeName
+                        })
+                    });
+                }
+
+                stepReview.classList.add('hidden');
+                stepSuccess.classList.remove('hidden');
+                
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#ffcb05', '#172b4d', '#ef4444', '#10b981']
+                });
+
+            } catch (error) {
+                showError("Hubo un error al registrar los votos en la nube.");
+                btn.disabled = false;
+                btn.textContent = "Confirmar y Enviar Votos 🚀";
+            }
+        }
+    </script>
+</body>
+</html>
