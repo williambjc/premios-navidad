@@ -417,7 +417,7 @@
             stepCategory.classList.remove('hidden');
         }
 
-        async function submitAllVotes() {
+        function submitAllVotes() {
             const btn = document.getElementById('confirmSubmitBtn');
             btn.disabled = true;
             btn.textContent = "Guardando votos...";
@@ -430,33 +430,28 @@
                 votosFormateados[categoryObj.name] = nomineeName;
             }
 
-            try {
-                await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        nombre: userData.name,
-                        email: userData.email,
-                        votos: votosFormateados
-                    })
-                });
+            // Disparamos la petición a Google en segundo plano sin bloquear la pantalla
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nombre: userData.name,
+                    email: userData.email,
+                    votos: votosFormateados
+                })
+            }).catch(err => console.log(err));
 
-                stepReview.classList.add('hidden');
-                stepSuccess.classList.remove('hidden');
-                
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#ffcb05', '#172b4d', '#ef4444', '#10b981']
-                });
-
-            } catch (error) {
-                showError("Hubo un error al registrar los votos en la nube.");
-                btn.disabled = false;
-                btn.textContent = "Confirmar y Enviar Votos 🚀";
-            }
+            // Mostramos el éxito de inmediato para que vuele en el celular
+            stepReview.classList.add('hidden');
+            stepSuccess.classList.remove('hidden');
+            
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ffcb05', '#172b4d', '#ef4444', '#10b981']
+            });
         }
     </script>
 </body>
