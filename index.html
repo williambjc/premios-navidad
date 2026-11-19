@@ -62,6 +62,13 @@
 </head>
 <body class="bg-xmasDark text-slate-100 min-h-full flex flex-col justify-center selection:bg-yellow-400 selection:text-black relative overflow-x-hidden">
 
+    <!-- Botón Flotante de Música Navideña -->
+    <button id="musicToggleBtn" onclick="toggleChristmasMusic()" title="Activar / Silenciar música navideña"
+        class="fixed top-4 right-4 z-30 bg-xmasCard/90 hover:bg-emerald-900 border border-yellow-400/60 text-yellow-400 px-3.5 py-2 rounded-full shadow-xl backdrop-blur-md flex items-center space-x-2 text-xs font-bold transition cursor-pointer">
+        <span id="musicIcon">🔇</span>
+        <span id="musicLabel" class="hidden sm:inline">Música: OFF</span>
+    </button>
+
     <!-- Guirnalda de luces LED -->
     <div class="fixed top-0 left-0 right-0 z-20 pointer-events-none overflow-hidden">
         <svg class="w-full h-14" viewBox="0 0 1200 60" preserveAspectRatio="none">
@@ -83,6 +90,25 @@
         <div class="snowflake" style="left: 60%; width: 6px; height: 6px; animation-duration: 11s; animation-delay: 3s;"></div>
         <div class="snowflake" style="left: 80%; width: 5px; height: 5px; animation-duration: 14s; animation-delay: 1.5s;"></div>
         <div class="snowflake" style="left: 92%; width: 6px; height: 6px; animation-duration: 10.5s; animation-delay: 0.5s;"></div>
+    </div>
+
+    <!-- Árboles decorativos -->
+    <div class="fixed bottom-0 left-0 z-0 pointer-events-none opacity-85 hidden sm:block">
+        <svg class="w-56 h-72" viewBox="0 0 200 260">
+            <rect x="85" y="215" width="30" height="45" fill="#451a03"/>
+            <polygon points="100,25 35,110 165,110" fill="#065f46"/><polygon points="100,70 25,165 175,165" fill="#047857"/><polygon points="100,120 15,220 185,220" fill="#059669"/>
+            <polygon points="100,8 105,20 118,20 108,28 112,40 100,32 88,40 92,28 82,20 95,20" fill="#ffcb05"/>
+            <circle cx="80" cy="95" r="5" class="bulb-red"/><circle cx="120" cy="90" r="5" class="bulb-yellow"/><circle cx="65" cy="145" r="6" class="bulb-blue"/><circle cx="138" cy="150" r="6" class="bulb-yellow"/><circle cx="95" cy="190" r="6" class="bulb-red"/>
+        </svg>
+    </div>
+    <div class="fixed bottom-0 right-0 z-0 pointer-events-none opacity-85 hidden sm:block">
+        <svg class="w-64 h-80" viewBox="0 0 240 280">
+            <rect x="115" y="235" width="30" height="45" fill="#451a03"/>
+            <polygon points="130,30 60,120 200,120" fill="#065f46"/><polygon points="130,80 45,180 215,180" fill="#047857"/><polygon points="130,135 30,240 230,240" fill="#059669"/>
+            <polygon points="130,12 135,24 148,24 138,32 142,44 130,36 118,44 122,32 112,24 125,24" fill="#ffcb05"/>
+            <circle cx="110" cy="100" r="5" class="bulb-yellow"/><circle cx="150" cy="105" r="5" class="bulb-red"/><circle cx="95" cy="155" r="6" class="bulb-red"/><circle cx="170" cy="165" r="6" class="bulb-yellow"/><circle cx="130" cy="210" r="6" class="bulb-yellow"/>
+            <rect x="45" y="245" width="35" height="35" rx="3" fill="#dc2626"/><rect x="60" y="245" width="5" height="35" fill="#ffcb05"/><rect x="45" y="260" width="35" height="5" fill="#ffcb05"/>
+        </svg>
     </div>
 
     <!-- CONTENIDO CENTRAL -->
@@ -142,7 +168,7 @@
             <!-- PASO 2: Categorías -->
             <div id="stepCategory" class="hidden space-y-4 fade-in">
                 <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-emerald-900">
-                    <div id="progressBar" class="bg-yellow-400 h-full transition-all duration-300" style="width: 5%"></div>
+                    <div id="progressBar" class="bg-yellow-400 h-full transition-all duration-300" style="width: 6%"></div>
                 </div>
 
                 <div class="border-b border-emerald-800/70 pb-3 flex items-center justify-between">
@@ -155,7 +181,7 @@
                             <h2 id="catTitle" class="text-base sm:text-lg font-bold text-white leading-snug">Título</h2>
                         </div>
                     </div>
-                    <span id="stepIndicator" class="text-xs font-semibold bg-emerald-950 border border-emerald-700 text-yellow-400 px-2.5 py-1 rounded-lg shrink-0 ml-2">1 / 18</span>
+                    <span id="stepIndicator" class="text-xs font-semibold bg-emerald-950 border border-emerald-700 text-yellow-400 px-2.5 py-1 rounded-lg shrink-0 ml-2">1 / 15</span>
                 </div>
 
                 <p id="catDesc" class="text-xs text-slate-300 bg-slate-950/50 p-2.5 rounded-xl border border-emerald-900/50 italic"></p>
@@ -229,6 +255,79 @@
     </div>
 
     <script>
+        // --- SINTETIZADOR DE MÚSICA NAVIDEÑA (Cero dependencias externas, nunca falla) ---
+        let audioCtx = null;
+        let isPlayingMusic = false;
+        let musicInterval = null;
+        let noteIndex = 0;
+
+        // Melodía suave estilo caja musical navideña (Jingle Bells)
+        const melody = [
+            { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.5 },
+            { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.5 },
+            { freq: 329.63, dur: 0.25 }, { freq: 392.00, dur: 0.25 }, { freq: 261.63, dur: 0.35 }, { freq: 293.66, dur: 0.15 }, { freq: 329.63, dur: 0.8 },
+            { freq: 0, dur: 0.2 },
+            { freq: 349.23, dur: 0.25 }, { freq: 349.23, dur: 0.25 }, { freq: 349.23, dur: 0.35 }, { freq: 349.23, dur: 0.15 },
+            { freq: 349.23, dur: 0.25 }, { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.25 },
+            { freq: 329.63, dur: 0.25 }, { freq: 293.66, dur: 0.25 }, { freq: 293.66, dur: 0.25 }, { freq: 329.63, dur: 0.25 }, { freq: 293.66, dur: 0.5 }, { freq: 392.00, dur: 0.5 },
+            { freq: 0, dur: 0.4 }
+        ];
+
+        function playNote(freq, duration) {
+            if (!audioCtx || freq === 0) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            
+            // Volumen suave y envolvente tipo campanita/caja musical
+            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.06, audioCtx.currentTime + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        function startMusicLoop() {
+            if (isPlayingMusic) return;
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            
+            isPlayingMusic = true;
+            updateMusicButtonUI();
+
+            function scheduleNext() {
+                if (!isPlayingMusic) return;
+                const note = melody[noteIndex];
+                playNote(note.freq, note.dur);
+                noteIndex = (noteIndex + 1) % melody.length;
+                musicInterval = setTimeout(scheduleNext, note.dur * 1000);
+            }
+            scheduleNext();
+        }
+
+        function stopMusicLoop() {
+            isPlayingMusic = false;
+            clearTimeout(musicInterval);
+            updateMusicButtonUI();
+        }
+
+        function toggleChristmasMusic() {
+            if (isPlayingMusic) stopMusicLoop();
+            else startMusicLoop();
+        }
+
+        function updateMusicButtonUI() {
+            const icon = document.getElementById('musicIcon');
+            const label = document.getElementById('musicLabel');
+            icon.textContent = isPlayingMusic ? '🎵' : '🔇';
+            label.textContent = isPlayingMusic ? 'Música: ON' : 'Música: OFF';
+        }
+
+        // --- LISTAS DE ASESORES ---
         const todosLosAsesores = [
             "CHUBA CHUBA CRISTINA ESTEFANIA", "ALFAGO MANTUANO FRANCO ISRAEL", "LOPEZ VACA DYLAN RUBEN",
             "BALSECA JIMENEZ WILLIAM FRANCISCO", "MOLINA PITA POOL ANDERSON", "MACIAS MOYANO LEVIS DAVID",
@@ -256,24 +355,22 @@
             "DANIELA PAOLA ESCOBEDO AYOVI", "VALLEJO TRIVIÑO JESSICA ELISA", "RAMONES KATRINE"
         ];
 
+        // --- 15 CATEGORÍAS SELECCIONADAS ---
         const categories = [
             { id: "bandido_hombre", name: "El Más Bandido", desc: "El que siempre anda en jugadas sospechosas y nadie le cree nada.", icon: "🦹‍♂️", nominees: asesoresHombres },
             { id: "bandida_mujer", name: "La Más Bandida", desc: "La que tiene su historial oculto y se hace la inocente en la campaña.", icon: "🦹‍♀️", nominees: asesorasMujeres },
             { id: "pareja_ano", name: "La Pareja del Año", desc: "Inseparables en toda la jornada, siempre andan juntos para todo.", icon: "👩‍❤️‍👨", nominees: ["Pool y Danilo", "Franco y Marlon", "Luis y Chompol"], hideSearch: true },
-            { id: "miss_vergonia", name: "Miss / Mister Vergonia", desc: "El que valió v... en el mes y todo le salió al revés.", icon: "💀", nominees: todosLosAsesores },
             { id: "el_mandarina", name: "El Mandarina", desc: "El que pide permiso hasta para respirar (premio incluye traer una mandarina).", icon: "🍊", nominees: todosLosAsesores },
-            { id: "mas_clasista", name: "El Más Clasista", desc: "Solo toma café de especialidad y mira por encima del hombro.", icon: "🥂", nominees: todosLosAsesores },
-            { id: "mas_fifas", name: "El Más Fifas", desc: "Respira fútbol 24/7 y solo habla de partidos, apuestas o alineaciones.", icon: "⚽", nominees: todosLosAsesores },
+            { id: "sol_invierno", name: "Sol de Invierno", desc: "Llega tarde y se va temprano.", icon: "⛅", nominees: todosLosAsesores },
+            { id: "chat_gpt", name: "ChatGPT", desc: "Lo sabe todo y si no se lo inventa.", icon: "🤖", nominees: todosLosAsesores },
+            { id: "miss_vergonia", name: "Miss / Mister Vergonia", desc: "El que valió v... en el mes y todo le salió al revés.", icon: "💀", nominees: todosLosAsesores },
             { id: "el_dory", name: "El Dory de la Campaña", desc: "Le explican algo ahorita y a los 5 minutos ya se le olvidó todo.", icon: "🐠", nominees: todosLosAsesores },
             { id: "el_grinch", name: "El Grinch", desc: "Odia la Navidad, los villancicos y anda amargado todo diciembre.", icon: "💚", nominees: todosLosAsesores },
             { id: "sensor_movimiento", name: "El Sensor de Movimiento", desc: "Solo se activa y trabaja cuando ve que pasa el supervisor.", icon: "👁️", nominees: todosLosAsesores },
             { id: "el_fantasma", name: "El Fantasma", desc: "Nadie lo ve en su puesto nunca, aparece y desaparece como por arte de magia.", icon: "👻", nominees: todosLosAsesores },
-            { id: "el_impuntual", name: "El Impuntual", desc: "Siempre tiene una excusa nueva del tráfico para llegar tarde.", icon: "⏰", nominees: todosLosAsesores },
             { id: "el_jarras", name: "El Más Jarras", desc: "No perdona un viernes y es el primero en armar la farra.", icon: "🍻", nominees: todosLosAsesores },
             { id: "el_psicologo", name: "La o El Psicólogo", desc: "Todos van a su puesto a contarle sus dramas y pedirle consejos.", icon: "🛋️", nominees: todosLosAsesores },
-            { id: "el_resentido", name: "El Más Resentido", desc: "Por cualquier broma se pica y deja de hablar tres días.", icon: "😒", nominees: todosLosAsesores },
             { id: "el_salado", name: "El Más Salado", desc: "Cuando está a punto de cerrar la venta, se cae el sistema o le cuelgan.", icon: "🧂", nominees: todosLosAsesores },
-            { id: "la_revelacion", name: "La Revelación", desc: "Llegó calladito y terminó sorprendiendo a todos con su rendimiento.", icon: "🌟", nominees: todosLosAsesores },
             { id: "el_estresado", name: "El Más Estresado", desc: "Vive al borde del colapso con cada llamada y cada meta.", icon: "🤯", nominees: todosLosAsesores }
         ];
 
@@ -304,6 +401,9 @@
                 showError("Por favor completa tu nombre y correo para continuar.");
                 return;
             }
+
+            // Iniciamos la música navideña suave al interactuar con el botón
+            startMusicLoop();
 
             userData.name = name;
             userData.email = email;
@@ -425,12 +525,10 @@
                 votosFormateados[categoryObj.name] = nomineeName;
             }
 
-            // 1. Mostrar pantalla de carga real
             stepReview.classList.add('hidden');
             stepLoading.classList.remove('hidden');
 
             try {
-                // 2. Esperar de verdad a que Google responda y valide el correo
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -445,7 +543,6 @@
                 stepLoading.classList.add('hidden');
 
                 if (result.result === "success") {
-                    // 3. Éxito: Mostrar pantalla con confeti
                     stepSuccess.classList.remove('hidden');
                     confetti({
                         particleCount: 100,
@@ -454,7 +551,6 @@
                         colors: ['#ffcb05', '#172b4d', '#ef4444', '#10b981']
                     });
                 } else {
-                    // El servidor detectó que el correo ya votó
                     stepReview.classList.remove('hidden');
                     showError(result.message || "Este correo ya registró su votación.");
                 }
