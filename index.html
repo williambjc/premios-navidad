@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificados Navideños 2026 🎄 | Banco Pichincha</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Librería de Confeti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
         tailwind.config = {
@@ -95,14 +94,13 @@
 <body class="bg-xmasDark text-slate-100 min-h-full flex flex-col justify-center selection:bg-yellow-400 selection:text-black relative overflow-x-hidden">
 
     <!-- Botón Flotante de Música Navideña -->
-    <button id="musicToggleBtn" onclick="toggleChristmasMusic()" title="Activar / Silenciar música navideña"
+    <button id="musicToggleBtn" onclick="toggleChristmasMusic(event)" title="Activar / Silenciar música navideña"
         class="fixed top-6 right-6 z-40 bg-xmasCard/95 hover:bg-emerald-900 border-2 border-yellow-400/80 text-yellow-400 px-3.5 py-2 rounded-full shadow-2xl backdrop-blur-md flex items-center space-x-2 text-xs font-bold transition cursor-pointer">
-        <span id="musicIcon">🔇</span>
-        <span id="musicLabel" class="hidden sm:inline">Música: OFF</span>
+        <span id="musicIcon">🎵</span>
+        <span id="musicLabel" class="hidden sm:inline">Música: ON</span>
     </button>
 
     <!-- MARCO COMPLETO DE LUCES LED (4 BORDES DE LA PANTALLA) -->
-    <!-- Borde Superior -->
     <div class="fixed top-0 left-0 right-0 z-30 pointer-events-none overflow-hidden">
         <svg class="w-full h-11" viewBox="0 0 1200 45" preserveAspectRatio="none">
             <path d="M0,4 Q150,36 300,8 T600,8 T900,8 T1200,8" fill="none" stroke="#1e293b" stroke-width="3"/>
@@ -116,7 +114,6 @@
         </svg>
     </div>
 
-    <!-- Borde Inferior -->
     <div class="fixed bottom-0 left-0 right-0 z-30 pointer-events-none overflow-hidden">
         <svg class="w-full h-11" viewBox="0 0 1200 45" preserveAspectRatio="none">
             <path d="M0,41 Q150,9 300,37 T600,37 T900,37 T1200,37" fill="none" stroke="#1e293b" stroke-width="3"/>
@@ -130,7 +127,6 @@
         </svg>
     </div>
 
-    <!-- Borde Izquierdo -->
     <div class="fixed top-0 bottom-0 left-0 z-30 pointer-events-none overflow-hidden">
         <svg class="h-full w-10" viewBox="0 0 40 800" preserveAspectRatio="none">
             <path d="M4,0 Q32,100 8,200 T8,400 T8,600 T8,800" fill="none" stroke="#1e293b" stroke-width="3"/>
@@ -142,7 +138,6 @@
         </svg>
     </div>
 
-    <!-- Borde Derecho -->
     <div class="fixed top-0 bottom-0 right-0 z-30 pointer-events-none overflow-hidden">
         <svg class="h-full w-10" viewBox="0 0 40 800" preserveAspectRatio="none">
             <path d="M36,0 Q8,100 32,200 T32,400 T32,600 T32,800" fill="none" stroke="#1e293b" stroke-width="3"/>
@@ -180,21 +175,17 @@
     </div>
 
     <!-- ÁRBOLES DE NAVIDAD EN MOVIMIENTO EN LOS LATERALES -->
-    <!-- Lateral Izquierdo (Árbol grande + árbol pequeño) -->
     <div class="fixed bottom-4 left-3 z-10 pointer-events-none flex items-end space-x-[-28px]">
         <svg class="w-40 h-56 sm:w-64 sm:h-80 tree-sway-left drop-shadow-2xl" viewBox="0 0 220 280">
             <rect x="95" y="230" width="30" height="50" fill="#451a03"/>
             <polygon points="110,28 40,118 180,118" fill="#065f46"/>
             <polygon points="110,75 28,175 192,175" fill="#047857"/>
             <polygon points="110,128 15,235 205,235" fill="#059669"/>
-            <!-- Estrella superior -->
             <polygon points="110,6 116,20 131,20 119,29 124,43 110,34 96,43 101,29 89,20 104,20" fill="#ffcb05"/>
-            <!-- Esferas y luces -->
             <circle cx="88" cy="100" r="6" class="bulb-red"/><circle cx="132" cy="95" r="6" class="bulb-yellow"/>
             <circle cx="70" cy="152" r="7" class="bulb-blue"/><circle cx="112" cy="145" r="6" class="bulb-red"/>
             <circle cx="150" cy="158" r="7" class="bulb-yellow"/><circle cx="62" cy="208" r="7" class="bulb-green"/>
             <circle cx="110" cy="202" r="7" class="bulb-yellow"/><circle cx="158" cy="212" r="7" class="bulb-red"/>
-            <!-- Regalo -->
             <rect x="145" y="242" width="38" height="38" rx="4" fill="#ef4444"/>
             <rect x="161" y="242" width="6" height="38" fill="#ffcb05"/>
             <rect x="145" y="258" width="38" height="6" fill="#ffcb05"/>
@@ -211,7 +202,6 @@
         </svg>
     </div>
 
-    <!-- Lateral Derecho (Árbol pequeño + árbol grande) -->
     <div class="fixed bottom-4 right-3 z-10 pointer-events-none flex items-end space-x-[-28px]">
         <svg class="w-24 h-36 sm:w-36 sm:h-48 tree-sway-left hidden md:block drop-shadow-xl" viewBox="0 0 160 220">
             <rect x="68" y="180" width="24" height="40" fill="#451a03"/>
@@ -228,14 +218,11 @@
             <polygon points="110,28 40,118 180,118" fill="#065f46"/>
             <polygon points="110,75 28,175 192,175" fill="#047857"/>
             <polygon points="110,128 15,235 205,235" fill="#059669"/>
-            <!-- Estrella superior -->
             <polygon points="110,6 116,20 131,20 119,29 124,43 110,34 96,43 101,29 89,20 104,20" fill="#ffcb05"/>
-            <!-- Esferas y luces -->
             <circle cx="90" cy="96" r="6" class="bulb-yellow"/><circle cx="132" cy="102" r="6" class="bulb-red"/>
             <circle cx="72" cy="156" r="7" class="bulb-red"/><circle cx="110" cy="148" r="6" class="bulb-blue"/>
             <circle cx="148" cy="154" r="7" class="bulb-yellow"/><circle cx="64" cy="210" r="7" class="bulb-yellow"/>
             <circle cx="112" cy="204" r="7" class="bulb-red"/><circle cx="158" cy="208" r="7" class="bulb-blue"/>
-            <!-- Regalo -->
             <rect x="35" y="242" width="38" height="38" rx="4" fill="#38bdf8"/>
             <rect x="51" y="242" width="6" height="38" fill="#ffcb05"/>
             <rect x="35" y="258" width="38" height="6" fill="#ffcb05"/>
@@ -280,13 +267,13 @@
                 
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Nombre <span class="text-yellow-400">*</span></label>
-                    <input type="text" id="userName" required 
+                    <input type="text" id="userName" required onfocus="unlockAudio()"
                         class="w-full bg-slate-950/90 border border-emerald-800 rounded-xl px-4 py-3 text-slate-100 text-sm focus:outline-none focus:border-yellow-400 transition-all">
                 </div>
 
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Correo <span class="text-yellow-400">*</span></label>
-                    <input type="email" id="userEmail" required 
+                    <input type="email" id="userEmail" required onfocus="unlockAudio()"
                         class="w-full bg-slate-950/90 border border-emerald-800 rounded-xl px-4 py-3 text-slate-100 text-sm focus:outline-none focus:border-yellow-400 transition-all">
                 </div>
 
@@ -364,7 +351,7 @@
                     <div class="absolute inset-0 flex items-center justify-center text-2xl">🎁</div>
                 </div>
                 <div class="space-y-2">
-                    <h2 class="text-lg font-bold text-white">Guardando en el Excel...</h2>
+                    <h2 class="text-lg font-bold text-white">Guardando...</h2>
                     <p class="text-xs text-yellow-400 font-medium animate-pulse">Verificando seguridad y registrando votos 🛷</p>
                 </div>
             </div>
@@ -386,75 +373,155 @@
     </div>
 
     <script>
-        // --- SINTETIZADOR DE MÚSICA NAVIDEÑA ---
+        // --- SINTETIZADOR DE MÚSICA NAVIDEÑA (VOLUMEN ALTO + COMPRESOR LIMPIO) ---
         let audioCtx = null;
-        let isPlayingMusic = false;
-        let musicInterval = null;
-        let noteIndex = 0;
+        let masterGain = null;
+        let compressor = null;
+        let musicDesiredOn = true;
+        let isSequencerRunning = false;
+        let stepTimeout = null;
+        let stepIndex = 0;
 
-        const melody = [
-            { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.5 },
-            { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.5 },
-            { freq: 329.63, dur: 0.25 }, { freq: 392.00, dur: 0.25 }, { freq: 261.63, dur: 0.35 }, { freq: 293.66, dur: 0.15 }, { freq: 329.63, dur: 0.8 },
-            { freq: 0, dur: 0.2 },
-            { freq: 349.23, dur: 0.25 }, { freq: 349.23, dur: 0.25 }, { freq: 349.23, dur: 0.35 }, { freq: 349.23, dur: 0.15 },
-            { freq: 349.23, dur: 0.25 }, { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.25 }, { freq: 329.63, dur: 0.25 },
-            { freq: 329.63, dur: 0.25 }, { freq: 293.66, dur: 0.25 }, { freq: 293.66, dur: 0.25 }, { freq: 329.63, dur: 0.25 }, { freq: 293.66, dur: 0.5 }, { freq: 392.00, dur: 0.5 },
-            { freq: 0, dur: 0.4 }
+        const festiveScore = [
+            // Deck the Halls
+            [523.25, 349.23, 174.61, 0.36],
+            [466.16, 349.23, 0,      0.18],
+            [440.00, 349.23, 174.61, 0.36],
+            [392.00, 329.63, 0,      0.36],
+            [349.23, 261.63, 174.61, 0.36],
+            [392.00, 293.66, 0,      0.36],
+            [440.00, 349.23, 174.61, 0.36],
+            [349.23, 261.63, 0,      0.36],
+
+            [392.00, 329.63, 130.81, 0.18],
+            [440.00, 349.23, 0,      0.18],
+            [466.16, 392.00, 130.81, 0.18],
+            [392.00, 329.63, 0,      0.18],
+            [440.00, 349.23, 174.61, 0.36],
+            [392.00, 329.63, 0,      0.18],
+            [349.23, 261.63, 130.81, 0.36],
+            [329.63, 261.63, 0,      0.36],
+            [349.23, 261.63, 174.61, 0.72],
+            [0,      0,      0,      0.22],
+
+            // We Wish You a Merry Christmas
+            [392.00, 293.66, 196.00, 0.34],
+            [523.25, 329.63, 130.81, 0.34],
+            [523.25, 329.63, 0,      0.17],
+            [587.33, 349.23, 0,      0.17],
+            [523.25, 329.63, 0,      0.17],
+            [493.88, 329.63, 0,      0.17],
+            [440.00, 349.23, 174.61, 0.34],
+            [440.00, 349.23, 0,      0.34],
+
+            [440.00, 349.23, 174.61, 0.34],
+            [587.33, 392.00, 196.00, 0.34],
+            [587.33, 392.00, 0,      0.17],
+            [659.25, 440.00, 0,      0.17],
+            [587.33, 392.00, 0,      0.17],
+            [523.25, 392.00, 0,      0.17],
+            [493.88, 392.00, 196.00, 0.34],
+            [392.00, 293.66, 0,      0.34],
+
+            [392.00, 293.66, 196.00, 0.19],
+            [392.00, 0,      0,      0.19],
+            [440.00, 349.23, 174.61, 0.34],
+            [587.33, 392.00, 196.00, 0.34],
+            [493.88, 392.00, 196.00, 0.34],
+            [523.25, 329.63, 130.81, 0.72],
+            [0,      0,      0,      0.30]
         ];
 
-        function playNote(freq, duration) {
-            if (!audioCtx || freq === 0) return;
+        function ensureAudioGraph() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                compressor = audioCtx.createDynamicsCompressor();
+                compressor.threshold.setValueAtTime(-12, audioCtx.currentTime);
+                compressor.knee.setValueAtTime(18, audioCtx.currentTime);
+                compressor.ratio.setValueAtTime(6, audioCtx.currentTime);
+                compressor.attack.setValueAtTime(0.005, audioCtx.currentTime);
+                compressor.release.setValueAtTime(0.15, audioCtx.currentTime);
+
+                masterGain = audioCtx.createGain();
+                masterGain.gain.setValueAtTime(1.0, audioCtx.currentTime);
+
+                compressor.connect(masterGain);
+                masterGain.connect(audioCtx.destination);
+            }
+        }
+
+        function triggerVoice(freq, duration, peakGain, type) {
+            if (!audioCtx || !compressor || freq === 0) return;
+            const now = audioCtx.currentTime;
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-            
-            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.06, audioCtx.currentTime + 0.03);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, now);
+
+            gain.gain.setValueAtTime(0.0005, now);
+            gain.gain.exponentialRampToValueAtTime(peakGain, now + 0.015);
+            gain.gain.exponentialRampToValueAtTime(0.0005, now + duration * 1.12);
 
             osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + duration);
+            gain.connect(compressor);
+            osc.start(now);
+            osc.stop(now + duration * 1.15);
         }
 
-        function startMusicLoop() {
-            if (isPlayingMusic) return;
-            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            
-            isPlayingMusic = true;
-            updateMusicButtonUI();
-
-            function scheduleNext() {
-                if (!isPlayingMusic) return;
-                const note = melody[noteIndex];
-                playNote(note.freq, note.dur);
-                noteIndex = (noteIndex + 1) % melody.length;
-                musicInterval = setTimeout(scheduleNext, note.dur * 1000);
+        function runSequencer() {
+            if (!musicDesiredOn || !audioCtx || audioCtx.state !== 'running') {
+                isSequencerRunning = false;
+                return;
             }
-            scheduleNext();
+            isSequencerRunning = true;
+            const [mel, harm, bass, dur] = festiveScore[stepIndex];
+
+            triggerVoice(mel, dur, 0.35, 'triangle');
+            triggerVoice(harm, dur, 0.18, 'sine');
+            triggerVoice(bass, dur * 1.2, 0.22, 'sine');
+
+            stepIndex = (stepIndex + 1) % festiveScore.length;
+            stepTimeout = setTimeout(runSequencer, dur * 1000);
         }
 
-        function stopMusicLoop() {
-            isPlayingMusic = false;
-            clearTimeout(musicInterval);
+        function unlockAudio() {
+            if (!musicDesiredOn) return;
+            ensureAudioGraph();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume().then(() => {
+                    if (!isSequencerRunning && musicDesiredOn) runSequencer();
+                }).catch(() => {});
+            } else if (!isSequencerRunning) {
+                runSequencer();
+            }
             updateMusicButtonUI();
         }
 
-        function toggleChristmasMusic() {
-            if (isPlayingMusic) stopMusicLoop();
-            else startMusicLoop();
+        function toggleChristmasMusic(e) {
+            if (e) e.stopPropagation();
+            if (musicDesiredOn) {
+                musicDesiredOn = false;
+                isSequencerRunning = false;
+                clearTimeout(stepTimeout);
+            } else {
+                musicDesiredOn = true;
+                unlockAudio();
+            }
+            updateMusicButtonUI();
         }
 
         function updateMusicButtonUI() {
             const icon = document.getElementById('musicIcon');
             const label = document.getElementById('musicLabel');
-            icon.textContent = isPlayingMusic ? '🎵' : '🔇';
-            label.textContent = isPlayingMusic ? 'Música: ON' : 'Música: OFF';
+            icon.textContent = musicDesiredOn ? '🎵' : '🔇';
+            label.textContent = musicDesiredOn ? 'Música: ON' : 'Música: OFF';
         }
+
+        window.addEventListener('load', unlockAudio);
+        ['click', 'touchstart', 'pointerdown', 'keydown', 'input', 'scroll'].forEach(evt => {
+            document.addEventListener(evt, unlockAudio, { passive: true });
+        });
 
         // --- LISTAS DE ASESORES ---
         const todosLosAsesores = [
@@ -523,6 +590,7 @@
         }
 
         function startVoting() {
+            unlockAudio();
             const name = document.getElementById('userName').value.trim();
             const email = document.getElementById('userEmail').value.trim();
 
@@ -530,8 +598,6 @@
                 showError("Por favor completa tu nombre y correo para continuar.");
                 return;
             }
-
-            startMusicLoop();
 
             userData.name = name;
             userData.email = email;
